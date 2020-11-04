@@ -49,14 +49,22 @@ app.get('/api', (req, res) => {
     if(url11 == "") {
       output.success = false;
       output.errormsg = "No URL Given"
-      res.end(JSON.stringify(output))
+     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     }
     try {
       new URL(url11)
     } catch {
       output.success = false;
       output.errormsg = "Invalid URL"
-      res.end(JSON.stringify(output))
+     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     }
 
     if(testregex(url11, "/linkvertise\.(com|net)|link-to\.net|up-to-down\.net|direct-link\.net|filemedia\.net|linkvertise\.download|file-link\.net/")) {
@@ -69,7 +77,11 @@ app.get('/api', (req, res) => {
        output.success = false;
        output.errormsg = "Not a valid URL"
   
-       res.end(JSON.stringify(output))
+      if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
       }
        if(urltestobj.host != "linkvertise.download") {
                      url = url11;
@@ -86,7 +98,11 @@ app.get('/api', (req, res) => {
                   output.success = false;
                   output.errormsg = "Not a valid URL"
            
-                res.end(JSON.stringify(output))
+               if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
                  }
                  urlobj = new URL(url)
                  dynamic = false;
@@ -115,7 +131,11 @@ bypassed = atob(decodeURIComponent(url.substr(url.indexOf("?r=") + 3)));
                       output.success = false;
                       output.errormsg = "Could not fetch data"
                       
-                      res.end(JSON.stringify(output))
+                     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
                      
                      }
                      
@@ -143,7 +163,11 @@ bypassed = atob(decodeURIComponent(url.substr(url.indexOf("?r=") + 3)));
                                bypassed = bypassedobj.searchParams.get("k")
                                output.success = true;
                                output.bypassedlink = bypassed
-                               res.end(JSON.stringify(output))
+                              if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
 
      
      
@@ -155,14 +179,22 @@ bypassed = atob(decodeURIComponent(url.substr(url.indexOf("?r=") + 3)));
                       output.success = false;
                       output.errormsg = "Invalid Linkvertise link. Could not fetch data"
                       
-                      res.end(JSON.stringify(output))
+                     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
                      }
      
                  })
                 } else {
                   output.success = true;
                   output.bypassedlink = bypassed
-                  res.end(JSON.stringify(output))
+                 if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
                 }
     } else if(testregex(url11, "/goo\.gl/")) {
       output.type = "Goo.gl" 
@@ -170,7 +202,11 @@ bypassed = atob(decodeURIComponent(url.substr(url.indexOf("?r=") + 3)));
 	if(err) {
     output.success = false;
     output.errormsg = "Error"
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   }
   var oldobj = new URL(url11)
   var newobj = new URL(longUrl)
@@ -180,11 +216,19 @@ bypassed = atob(decodeURIComponent(url.substr(url.indexOf("?r=") + 3)));
   if(oldurl == newurl) {
     output.success = false;
     output.errormsg = "Invalid Link"
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   } else {
     output.success = true;
     output.bypassedlink = longUrl;
-        res.end(JSON.stringify(output))
+       if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   }
 
 });
@@ -196,11 +240,19 @@ bypassed = atob(decodeURIComponent(url.substr(url.indexOf("?r=") + 3)));
 if(err) {
   output.success = false;
   output.errormsg = err
-  res.end(JSON.stringify(output))
+ if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
 } else {
   output.success = true;
   output.bypassedlink = result;
-  res.end(JSON.stringify(output))
+ if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
 }
 
     
@@ -208,7 +260,11 @@ if(err) {
   } catch {
     output.success = false
     output.errormsg = "Unexpected error"
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   }
      } else if(testregex(url11,  "/adf\.ly|raboninco\.com|dapalan\.com|gdanstum\.net|ducolomal\.com|aclabink\.com|yoitect\.com|yoineer\.com|yamechanic\.com|skamason\.com|skamaker\.com|kializer\.com|flyserve\.co|fawright\.com/")) {
 
@@ -225,7 +281,11 @@ if(err) {
  failed = true;
  output.success = false;
  output.errormsg = "Invalid Adfly URL"
- res.end(JSON.stringify(output))
+if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
  }
  if(!failed) {
         r=ysmm
@@ -273,25 +333,41 @@ if(err) {
       failed = true;
       output.success = false
       output.errormsg =  "Unexpected Error"
-      res.end(JSON.stringify(output))
+     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     }
 if(!failed) {
   if(!(bypassed === "null")) {
     console.log(bypassed)
     output.success = true
     output.bypassedlink =  bypassed
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   } else {
     output.success = false
     output.errormsg =  "Couldnt retrieve bypassed URL"
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   }
 }
        
       } else {
         output.success = false;
         output.errormsg = "Could not fetch data"
-        res.end(JSON.stringify(output))
+       if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
       }
      }
        });
@@ -304,18 +380,30 @@ failed = false;
 } catch {
   output.success = false;
   output.errormsg = "Invalid Sub2unlock link"
-  res.end(JSON.stringify(output))
+ if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   failed = true;
 }
 if(!failed) {
   if(body.indexOf('<div id="theGetLink" style="display: none">') != -1) {
   output.success = true;
   output.bypassedlink = body.substring(body.indexOf('<div id="theGetLink" style="display: none">')).substring(43,body.substring(body.indexOf('<div id="theGetLink" style="display: none">')).indexOf('</div>'));
-  res.end(JSON.stringify(output))
+ if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   } else {
     output.success = false;
     output.errormsg = "Couldnt retrieve bypassed link"
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     failed = true;
   }
 }
@@ -334,12 +422,20 @@ if(!failed) {
           failed =true;
           output.success = false;
           output.errormsg = "Cannot read bypassed link";
-          res.end(JSON.stringify(output))
+         if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
         }
         if(!failed) {
           output.success = true;
           output.bypassedlink = JSON.parse(data2).props.initialProps.pageProps.data.targeturl
-          res.end(JSON.stringify(output))
+         if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
         }
       })
      } else if(testregex(url11, "/boost\.ink|bst\.gg|bst\.wtf|booo\.st/")) {
@@ -350,11 +446,19 @@ if(!failed) {
         if (respom) {
           output.success = true;
             output.bypassedlink = atob(respom[2]);;
-            res.end(JSON.stringify(output))
+           if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
         } else {
           output.success = false;
           output.errormsg = "Invalid Boost.ink link";
-          res.end(JSON.stringify(output))
+         if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
         }
     };
     request(url11, function (error, response, body) {
@@ -363,7 +467,11 @@ if(!failed) {
       } else {
         output.success = false;
         output.errormsg = "Cannot send request";
-        res.end(JSON.stringify(output))
+       if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
       }
       
     })
@@ -377,18 +485,30 @@ if(!failed) {
   if(err) {
     output.success = false;
     output.errormsg = "This website is not supported"
-    res.end(JSON.stringify(output))
+   if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
   } else {
 
     if(new URL(output.inputlink).hostname+new URL(output.inputlink).pathname != new URL(result).hostname+new URL(result).pathname) {
       output.success = true;
       output.type = "Misc Link"
       output.bypassedlink = result;
-      res.end(JSON.stringify(output))
+     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     } else {
       output.success = false;
       output.errormsg = "Unexpected Error"
-      res.end(JSON.stringify(output))
+     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     }
 
   }
@@ -398,7 +518,11 @@ if(!failed) {
     } catch {
       output.success = false
       output.errormsg = "Unexpected error"
-      res.end(JSON.stringify(output))
+     if(output.success) {
+res.end(output.bypassedlink)
+} else {
+res.end(output.errormsg)
+}
     }
 
 
