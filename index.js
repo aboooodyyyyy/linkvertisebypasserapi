@@ -105,6 +105,18 @@ res.end(output.errormsg)
 }
                  }
                  urlobj = new URL(url)
+                 const [_, userID, stuff] = urlobj.pathname.split("/");
+                 console.log(userID)
+                 if(userID == "103742" || userID == "175314") {
+                                     output.success = false;
+                 output.errormsg = "This linkvertise link with this id can't be bypassed"
+                 if(output.success) {
+                  res.end(output.bypassedlink)
+                  } else {
+                  res.end(output.errormsg)
+                  }
+                 return
+                 }
                  dynamic = false;
                   if(urlobj.searchParams.get("r") != null) {
 //dynamic
