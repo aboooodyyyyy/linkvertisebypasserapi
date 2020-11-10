@@ -109,7 +109,7 @@ res.end(output.errormsg)
                  console.log(userID)
                  if(userID == "103742" || userID == "175314") {
                                      output.success = false;
-                 output.errormsg = "This linkvertise link with this id can't be bypassed"
+                 output.errormsg = "This linkvertise link with this ID can't be bypassed"
                  if(output.success) {
                   res.end(output.bypassedlink)
                   } else {
